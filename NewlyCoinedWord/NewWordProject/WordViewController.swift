@@ -11,6 +11,7 @@ class WordViewController: UIViewController {
 
     
     @IBOutlet var wordTextField: UITextField!
+    @IBOutlet var searchButton: UIButton!
     @IBOutlet var wordFirstButton: UIButton!
     @IBOutlet var wordButtons: [UIButton]!
     @IBOutlet var resultLabel: UILabel!
@@ -35,7 +36,6 @@ class WordViewController: UIViewController {
         
         designWordTextField()
         designWordButtons()
-        
         wordTextField.text = getRandomWord()
    
         //wordFirstButton.isHidden = true
@@ -62,6 +62,35 @@ class WordViewController: UIViewController {
             wordButton.layer.borderWidth = 1
         }
     }
+    
+    func matchWordToDictionary() {
+        for inputWord in newWordDictionary.keys {
+            if inputWord == wordTextField.text?.lowercased() {
+                resultLabel.text = newWordDictionary[inputWord]!
+                break
+            } else {
+                resultLabel.text = "결과를 찾지 못했습니다"
+            }
+        }
+    }
+    
+    @IBAction func searchButtonTapped(_ sender: UIButton) {
+        guard let inputWord = wordTextField.text else { return }
+    
+        if inputWord.count <= 1 {
+            let alert = UIAlertController(title: "글자 수가 모자랍니다.", message: "2자 이상 입력하세요!", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "취소", style: .cancel)
+            let ok = UIAlertAction(title: "확인", style: .default)
+            
+            alert.addAction(cancel)
+            alert.addAction(ok)
+            
+            present(alert, animated: true)
+        }
+        
+        matchWordToDictionary()
+    }
+    
     
     @IBAction func endEditingTextField(_ sender: UITextField) {
     }
@@ -92,12 +121,7 @@ class WordViewController: UIViewController {
         //print("DidEndOnExit")
         //resultLabel.text = wordTextField.text
         
-        for inputWord in newWordDictionary.keys {
-            if inputWord == wordTextField.text?.lowercased() {
-                resultLabel.text = newWordDictionary[inputWord]!
-                break
-            }
-        }
+        matchWordToDictionary()
         
         /*
          ///강의 1 - switch/case

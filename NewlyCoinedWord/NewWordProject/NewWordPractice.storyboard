@@ -47,6 +47,9 @@
                                                 <state key="normal" image="search">
                                                     <color key="titleColor" systemColor="labelColor"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="searchButtonTapped:" destination="Nz0-gR-VLH" eventType="touchUpInside" id="1z8-5T-jwL"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -159,6 +162,7 @@
                     </view>
                     <connections>
                         <outlet property="resultLabel" destination="paR-2s-u7i" id="Kjn-G3-4tG"/>
+                        <outlet property="searchButton" destination="4Q9-28-JZh" id="P76-L1-4rO"/>
                         <outlet property="wordFirstButton" destination="kLV-Tn-ydI" id="dg3-4R-pTm"/>
                         <outlet property="wordTextField" destination="BAb-Ky-vCZ" id="1IG-tl-yWs"/>
                         <outletCollection property="wordButtons" destination="kLV-Tn-ydI" collectionClass="NSMutableArray" id="igQ-Lw-etE"/>
