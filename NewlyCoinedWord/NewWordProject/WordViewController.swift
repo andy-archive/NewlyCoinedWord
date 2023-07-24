@@ -62,6 +62,13 @@ class WordViewController: UIViewController {
         }
     }
     
+    @IBAction func endEditingTextField(_ sender: UITextField) {
+    }
+    
+    @IBAction func tapGestureTapped(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
     // 버튼 클릭 시 텍스트필드의 텍스트에 버튼 타이틀이 들어감
     // 1.
     @IBAction func wordButtonTapped(_ sender: UIButton) {
@@ -74,7 +81,7 @@ class WordViewController: UIViewController {
         wordTextField.text = sender.titleLabel?.text
         
         // 버튼 클릭 시 숨기기
-        sender.isHidden = true
+        //sender.isHidden = true
         
         //3.
         textFieldKeyboardTapped(wordTextField)
